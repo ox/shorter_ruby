@@ -11,19 +11,23 @@ describe "basic functionality" do
     Sinatra::Application
   end
   
-  it "says 'hello world'" do
+  it "say 'hello world'" do
     get '/'
     last_response.should be_ok
     last_response.body.should == "hello world"
   end
-  
-  it "fails if no url given" do
+end
+
+describe "URL shortener" do
+  it "should redirect to home if no url given" do
     get '/shorten?'
-    last_response.status.should == 404
+    last_response.status.should == 301
+    last_response.headers["location"].should == "http://localhost:4567/"
   end
   
-  it "fails if no such shortened url exists" do
-    get '/123'
-    last_response.status.should == 404
+  it "should redirect to home if no such shortened url exists" do
+    get '/NOTEXISTANT'
+    last_response.status.should == 301
+    last_response.headers["location"].should == "http://localhost:4567/"
   end
 end
