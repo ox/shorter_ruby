@@ -7,7 +7,7 @@ set :erb, :layout => :layout
 
 require 'mongo'
 db = nil
-shortcuts = nil
+shortcuts = {'abc123' => "http://www.google.com/"}
 
 # when we get a mongo server, this is how the db stuff will look, maybe
 # ENV ||= {}
@@ -34,5 +34,9 @@ end
 # }
 get '/shorten' do
   redirect("/") if params["url"].nil?
-  
+end
+
+get '/:short_code' do
+  redirect("/") if params[:short_code].nil? || shortcuts[params[:short_code]].nil?
+  redirect(shortcuts[params[:short_code]])
 end

@@ -55,8 +55,8 @@ describe "URL redirector" do
 	end
 
 	it "should redirect me to google.com" do
-		get '/EXISTANT'
-		last_response.status.should == 200
-		last_respnse.headers["location"].should == "http://www.google.com" # using google bad? Answer: not bad.
+		get '/abc123'
+		last_response.status.should == 302
+		last_response.headers["location"].should == "http://www.google.com/" # using google bad? Answer: not bad.
 	end
 end
