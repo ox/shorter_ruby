@@ -1,4 +1,4 @@
-require File.expand_path("server.rb")
+require 'spec_helper'
 require 'rspec'
 require 'rack/test'
 
