@@ -16,4 +16,14 @@ describe "basic functionality" do
     last_response.should be_ok
     last_response.body.should == "hello world"
   end
+  
+  it "fails if no url given" do
+    get '/shorten?'
+    last_response.status.should == 404
+  end
+  
+  it "fails if no such shortened url exists" do
+    get '/123'
+    last_response.status.should == 404
+  end
 end
