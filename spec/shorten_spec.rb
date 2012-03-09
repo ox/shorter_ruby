@@ -5,9 +5,11 @@ require 'json'
 
 set :environment, :test
 
+RSpec.configure do |conf|
+  conf.include Rack::Test::Methods
+end
+
 describe "basic functionality" do
-	include Rack::Test::Methods
-	
 	def app
 		Sinatra::Application
 	end
@@ -21,9 +23,7 @@ describe "basic functionality" do
 end
 
 describe "URL shortener" do
-  include Rack::Test::Methods
-	
-	def app
+  def app
 		Sinatra::Application
 	end
 	
@@ -42,9 +42,7 @@ end
 
 # TODO : come up with better URLs to be testing on
 describe "URL redirector" do
-  include Rack::Test::Methods
-	
-	def app
+  def app
 		Sinatra::Application
 	end
 	
